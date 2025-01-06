@@ -8,22 +8,34 @@ function node (data) {
 
 function tree () {
 
-    function buildTree(myArray, start = 0, end = myArray.length - 1) {
+    function buildTree(myArray, start = 0, end = (myArray.length - 1)) {
 
-        //Base case, when array is empty.
+        //Base case, when subarray becomes empty.
         if(start > end) {
-            return;
+            return null;
         }
-        const mid = (end + start) / 2; // this value is equal to an array location
-        const root = node(myArray[mid]); // myArray at mid, is the value to be assigned as data
 
-        //root.leftChild needs to = left subArray
-        //root.rightChild needs to = right subArray
+        //Mid is the array index of the root data.
+        const mid = Math.floor((end + start) / 2);
 
-        //recursively tree(root.leftChild);
-        //recursively tree(root.rightChild);
+        //myArray at mid is the value to be assigned as data
+        const root = node(myArray[mid]);
 
-        //return root
+        //Recursively calculates mid and root of left and right subarrays and adds them (balanced) to the tree.
+        root.leftChild = buildTree(myArray.slice(0, (mid)));
+        root.rightChild = buildTree(myArray.slice(mid + 1));
+
+        return root
+    }
+
+    return {
+        buildTree: buildTree
     }
 
 }
+
+const testArray = [5, 6, 7, 8];
+const testTree = tree();
+
+//Displays resulting test tree
+console.log(testTree.buildTree(testArray));
