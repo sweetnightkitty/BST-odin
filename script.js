@@ -15,7 +15,8 @@ function tree () {
             return null;
         }
 
-        arr = mergeSort(arr);
+        //Sorts the array numerically
+        arr = arr.sort((a, b) => {return a - b});
 
         //Mid is the array index of the root data.
         const mid = Math.floor((end + start) / 2);
@@ -81,3 +82,4 @@ const unsortedArray = [2, 1, 9, 4, 5, 3];
 //Displays resulting test tree
 console.log(testTree.buildTree(testArray));
 console.log(testTree.buildTree(unsortedArray));
+
