@@ -15,6 +15,8 @@ function tree () {
             return null;
         }
 
+        //MergeSort
+
         //Mid is the array index of the root data.
         const mid = Math.floor((end + start) / 2);
 
@@ -23,9 +25,18 @@ function tree () {
 
         //Recursively calculates mid and root of left and right subarrays and adds them (balanced) to the tree.
         root.leftChild = buildTree(arr.slice(0, (mid)));
+        //mid + 1 -> ensures that the root is EXCLUDED in the rightChild
         root.rightChild = buildTree(arr.slice(mid + 1));
 
         return root
+    }
+
+    function mergeSort(arr) {
+
+    }
+
+    function merge() {
+
     }
 
     return {
