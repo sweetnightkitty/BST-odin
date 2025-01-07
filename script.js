@@ -15,7 +15,7 @@ function tree () {
             return null;
         }
 
-        //MergeSort
+        arr = mergeSort(arr);
 
         //Mid is the array index of the root data.
         const mid = Math.floor((end + start) / 2);
@@ -76,6 +76,8 @@ function tree () {
 
 const testArray = [5, 6, 7, 8];
 const testTree = tree();
+const unsortedArray = [2, 1, 9, 4, 5, 3];
 
 //Displays resulting test tree
 console.log(testTree.buildTree(testArray));
+console.log(testTree.buildTree(unsortedArray));
