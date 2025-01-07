@@ -32,6 +32,7 @@ function tree () {
     }
 
     function mergeSort(arr) {
+        //Base case; When arr can no longer divide
         if(arr.length == 1) {
             return arr;
         };
@@ -45,11 +46,30 @@ function tree () {
     }
 
     function merge(left, right) {
+        //where left & right are arrays of length = 1 (at first)
+        let mergedArray = [],
+        rightIndex = 0,
+        leftIndex = 0;
 
+        while(leftIndex < left.length && rightIndex < right.length) {
+            if(left[leftIndex] < right[rightIndex]) {
+                mergedArray.push(left[leftIndex]);
+                leftIndex++; //Move to the next element in the left array
+            } else {
+                mergedArray.push(right[rightIndex]);
+                rightIndex++; //Move to the next element in the right array
+            }
+        }
+        
+        return mergedArray
+        //Concats the remaining elements from either the left or right (if there are any)
+        .concat(left.slice(leftIndex))
+        .concat(right.slice(rightIndex));
     }
 
     return {
-        buildTree: buildTree
+        buildTree: buildTree,
+        mergeSort: mergeSort
     }
 
 }
