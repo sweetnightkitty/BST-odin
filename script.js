@@ -32,7 +32,12 @@ function tree () {
     }
 
     function mergeSort(arr) {
+        const midPoint = Math.floor(arr.length / 2);
+        const left = arr.slice(0, midPoint);
+        const right = arr.slice(midPoint);
 
+        mergeSort(left);
+        mergeSort(right);
     }
 
     function merge() {
