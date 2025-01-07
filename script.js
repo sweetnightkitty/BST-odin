@@ -16,7 +16,7 @@ function tree () {
         }
 
         //Sorts the array numerically
-        arr = arr.sort((a, b) => {return a - b});
+        arr = [...new Set(arr)].sort((a, b) => {return a - b});
 
         //Mid is the array index of the root data.
         const mid = Math.floor((end + start) / 2);
@@ -32,17 +32,17 @@ function tree () {
         return root
     }
 
+
     return {
         buildTree: buildTree,
     }
 
 }
 
-const testArray = [5, 6, 7, 8];
+const testArray = [5, 6, 7, 7, 8];
 const testTree = tree();
-const unsortedArray = [2, 1, 9, 4, 5, 3];
+const unsortedArray = [2, 1, 9, 4, 5, 3, 5];
 
 //Displays resulting test tree
 console.log(testTree.buildTree(testArray));
 console.log(testTree.buildTree(unsortedArray));
-
