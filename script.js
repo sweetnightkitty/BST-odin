@@ -101,12 +101,25 @@ function tree(arr) {
                     currentNode = currentNode.rightChild;
                 } else {
                     //when both children exist
+                    const successor = findSuccessor(currentNode);
+                    console.log(successor)
+                    console.log("done");
                 }
             }
 
             return currentNode;
         }
     }
+}
+
+function findSuccessor(currentNode) {
+    //First traverses to right child to explore all values larger than current node
+    currentNode = currentNode.rightChild;
+    //To find the smallest value among all the nodes that are larger than the current node (to be deleted)
+    while(currentNode && currentNode.leftChild) {
+        currentNode = currentNode.leftChild;
+    }
+    return currentNode;
 }
 
 //Driving Code
@@ -117,6 +130,5 @@ test.prettyPrint();
 test.insert(6);
 test.insert(10);
 test.prettyPrint();
-test.delete(3);
 test.delete(2);
 test.prettyPrint();
