@@ -97,7 +97,10 @@ function tree(arr) {
 
                 if(!currentNode.leftChild && !currentNode.rightChild) {
                     currentNode = null;
-                    return currentNode;
+                } else if(currentNode.leftChild && !currentNode.rightChild) {
+                    currentNode = currentNode.leftChild;
+                } else if(!currentNode.leftChild && currentNode.rightChild) {
+                    currentNode = currentNode.rightChild;
                 }
             }
 
@@ -115,4 +118,5 @@ test.insert(6);
 test.insert(10);
 test.prettyPrint();
 test.delete(3);
+test.delete(2);
 test.prettyPrint();
