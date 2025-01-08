@@ -32,23 +32,21 @@ function buildTree (arr, start = 0, end = (arr.length - 1)) {
 function tree(arr) {
     let root = buildTree(arr);
 
-    const prettyPrint = (node = root, prefix = "", isLeft = true) => {
-        if (node === null) {
-          return;
-        }
-        if (node.rightChild !== null) {
-          prettyPrint(node.rightChild, `${prefix}${isLeft ? "│   " : "    "}`, false);
-        }
-        console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.data}`);
-        if (node.leftChild !== null) {
-          prettyPrint(node.leftChild, `${prefix}${isLeft ? "    " : "│   "}`, true);
-        }
-      };
-    
-    
     return {
         root,
-        prettyPrint
+
+        prettyPrint: function (node = root, prefix = "", isLeft = true) {
+            if (node === null) {
+            return;
+            }
+            if (node.rightChild !== null) {
+            this.prettyPrint(node.rightChild, `${prefix}${isLeft ? "│   " : "    "}`, false);
+            }
+            console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.data}`);
+            if (node.leftChild !== null) {
+            this.prettyPrint(node.leftChild, `${prefix}${isLeft ? "    " : "│   "}`, true);
+            }
+        }
     }
 }
 
