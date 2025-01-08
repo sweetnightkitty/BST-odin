@@ -77,6 +77,26 @@ function tree(arr) {
                     return this.root;
                 }
             }
+        },
+
+        delete: function(value, currentNode = this.root) {
+            //Base case: bottom of the tree reached, but value was not found (didn't exist) - breaks
+            if(currentNode == null) {
+                return currentNode;
+            }
+            
+            if(value < currentNode.data) {
+                //Applies a check whether to delete the next item down the tree to the LEFT 
+                currentNode.leftChild = this.delete(value, currentNode.leftChild);
+            } else if(value > currentNode.data) {
+                //Applies a check whether to delete the next item down the tree to the RIGHT
+                currentNode.rightChild = this.delete(value, currentNode.rightChild);
+            } else if(value == currentNode.data) {
+                console.log("Done");
+                console.log(currentNode.data);
+            }
+
+            return currentNode;
         }
     }
 }
@@ -88,4 +108,6 @@ const test = tree(unsortedArray);
 test.prettyPrint();
 test.insert(6);
 test.insert(10);
+test.prettyPrint();
+test.delete(3);
 test.prettyPrint();
