@@ -94,6 +94,11 @@ function tree(arr) {
             } else if(value == currentNode.data) {
                 console.log("Done");
                 console.log(currentNode.data);
+
+                if(!currentNode.leftChild && !currentNode.rightChild) {
+                    currentNode = null;
+                    return currentNode;
+                }
             }
 
             return currentNode;
