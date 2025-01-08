@@ -92,8 +92,6 @@ function tree(arr) {
                 //Applies a check whether to delete the next item down the tree to the RIGHT
                 currentNode.rightChild = this.delete(value, currentNode.rightChild);
             } else if(value == currentNode.data) {
-                console.log("Done");
-                console.log(currentNode.data);
 
                 if(!currentNode.leftChild && !currentNode.rightChild) {
                     currentNode = null;
@@ -101,6 +99,8 @@ function tree(arr) {
                     currentNode = currentNode.leftChild;
                 } else if(!currentNode.leftChild && currentNode.rightChild) {
                     currentNode = currentNode.rightChild;
+                } else {
+                    //when both children exist
                 }
             }
 
