@@ -46,6 +46,37 @@ function tree(arr) {
             if (node.leftChild !== null) {
             this.prettyPrint(node.leftChild, `${prefix}${isLeft ? "    " : "│   "}`, true);
             }
+        },
+
+        insert: function(value) {
+            //Insert something to the tree
+
+            let currentNode = this.root;
+            const newNode = node(value);
+
+            while(currentNode) {
+                //When value is smaller traverse left down the tree, when value is larger traverse right
+                if(value < currentNode.data) {
+                    //When you reach the bottom of the tree assign the newNode
+                    if(!currentNode.leftChild) {
+                        currentNode.leftChild = newNode;
+                        return this.root;
+                    }
+                    //Continues left until you reach bottom of the tree
+                    currentNode = currentNode.leftChild;
+                } else if(value > currentNode.data) {
+                    //When you reach the bottom of the tree assign the newNode
+                    if(!currentNode.rightChild) {
+                        currentNode.rightChild = newNode;
+                        return this.root;
+                    }
+                    //Continues right until you reach bottom of the tree
+                    currentNode = currentNode.rightChild;
+                } else {
+                    //In the case value is a duplicate do nothing
+                    return this.root;
+                }
+            }
         }
     }
 }
@@ -54,4 +85,7 @@ function tree(arr) {
 const unsortedArray = [2, 1, 9, 4, 5, 3, 5];
 
 const test = tree(unsortedArray);
+test.prettyPrint();
+test.insert(6);
+test.insert(10);
 test.prettyPrint();
