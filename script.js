@@ -29,6 +29,14 @@ function buildTree (arr, start = 0, end = (arr.length - 1)) {
     return root;
 };
 
+function tree(arr) {
+    let root = buildTree(arr);
+
+    return root;
+}
 
 //Driving Code
 const unsortedArray = [2, 1, 9, 4, 5, 3, 5];
+
+const test = tree(unsortedArray);
+console.log(test);
