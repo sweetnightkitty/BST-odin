@@ -32,11 +32,28 @@ function buildTree (arr, start = 0, end = (arr.length - 1)) {
 function tree(arr) {
     let root = buildTree(arr);
 
-    return root;
+    const prettyPrint = (node = root, prefix = "", isLeft = true) => {
+        if (node === null) {
+          return;
+        }
+        if (node.rightChild !== null) {
+          prettyPrint(node.rightChild, `${prefix}${isLeft ? "│   " : "    "}`, false);
+        }
+        console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.data}`);
+        if (node.leftChild !== null) {
+          prettyPrint(node.leftChild, `${prefix}${isLeft ? "    " : "│   "}`, true);
+        }
+      };
+    
+    
+    return {
+        root,
+        prettyPrint
+    }
 }
 
 //Driving Code
 const unsortedArray = [2, 1, 9, 4, 5, 3, 5];
 
 const test = tree(unsortedArray);
-console.log(test);
+test.prettyPrint();
