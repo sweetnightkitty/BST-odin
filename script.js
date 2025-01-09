@@ -100,10 +100,14 @@ function tree(arr) {
                 } else if(!currentNode.leftChild && currentNode.rightChild) {
                     currentNode = currentNode.rightChild;
                 } else {
-                    //when both children exist
-                    const successor = findSuccessor(currentNode);
-                    console.log(successor)
-                    console.log("done");
+                    //when both children exist find the next in order successor
+                    const successor = findSuccessor(currentNode); // node of 3
+
+                    //sets current node equal to the successor
+                    currentNode.data = successor.data;
+
+                    //Recursively calls and deletes successor from it's original place in tree
+                    currentNode.rightChild = this.delete(successor.data, currentNode.rightChild);
                 }
             }
 
@@ -130,5 +134,5 @@ test.prettyPrint();
 test.insert(6);
 test.insert(10);
 test.prettyPrint();
-test.delete(2);
+test.delete(4);
 test.prettyPrint();
