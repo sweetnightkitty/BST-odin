@@ -112,6 +112,19 @@ function tree(arr) {
             }
 
             return currentNode;
+        },
+
+        find: function(value, currentNode = this.root) {
+            if(currentNode == null) {
+                return currentNode;
+            }
+            if(value < currentNode.data) {
+                currentNode = this.find(value, currentNode.leftChild);
+            } else if(value > currentNode.data) {
+                currentNode = this.find(value, currentNode.rightChild);
+            }
+
+            return currentNode;
         }
     }
 }
@@ -136,3 +149,4 @@ test.insert(10);
 test.prettyPrint();
 test.delete(4);
 test.prettyPrint();
+console.log(test.find(4));
