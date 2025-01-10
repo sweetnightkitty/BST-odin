@@ -125,9 +125,37 @@ function tree(arr) {
             }
 
             return currentNode;
+        },
+
+        levelOrder: function(callbackFunction, currentNode = this.root) {
+            //If the root is not defined exit
+            if(currentNode == null) {
+                return "tree";
+            }
+
+            //Create queue and put the root as the first item
+            const queue = [];
+            queue.push(currentNode);
+
+            while(queue.length > 0) {
+                //Pops out the first item of the array and applies callback
+                const node = queue.shift();
+                console.log(node);
+
+                //Enqueue the left child of node
+                if(node.leftChild != null) {
+                    queue.push(node.leftChild);
+                }
+
+                //Enqueue the right child node
+                if(node.rightChild != null) {
+                    queue.push(node.rightChild);
+                }
+            }
         }
     }
 }
+
 
 function findSuccessor(currentNode) {
     //First traverses to right child to explore all values larger than current node
@@ -149,4 +177,6 @@ test.insert(10);
 test.prettyPrint();
 test.delete(4);
 test.prettyPrint();
-console.log(test.find(4));
+// console.log(test.find(5));
+
+test.levelOrder();
