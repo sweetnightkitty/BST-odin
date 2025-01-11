@@ -189,6 +189,30 @@ function tree(arr) {
             this.preOrder(left);
             this.preOrder(right);
 
+        },
+
+        inOrder: function(currentNode = this.root, callback = this.callback) {
+            if(typeof callback !== "function") {
+                throw new Error ("A callback function is required.");
+            }
+            
+            if(!currentNode.leftChild) {
+                callback(currentNode);
+                return;
+            }
+
+            if(!currentNode.rightChild) {
+                callback(currentNode);
+                return;
+            }
+
+            const left = currentNode.leftChild;
+            const right = currentNode.rightChild;
+
+            this.inOrder(left);
+            callback(currentNode);
+            this.inOrder(right);
+
         }
     }
 }
@@ -206,5 +230,11 @@ test.delete(4);
 test.prettyPrint();
 // console.log(test.find(5));
 
+console.log("Level Order:");
 test.levelOrder();
+
+console.log("Pre Order:");
 test.preOrder();
+
+console.log("In Order:");
+test.inOrder();
