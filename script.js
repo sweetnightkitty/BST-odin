@@ -261,9 +261,12 @@ function tree(arr) {
 
         depth: function(value) {
             const rootHeight = this.height();
+
+            //Find the node containing the provided value to get it's height in the tree
             const node = this.find(value);
             const nodeHeight = this.height(node);
 
+            //Depth of the node = 
             return rootHeight - nodeHeight;
         },
 
