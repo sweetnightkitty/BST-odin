@@ -257,6 +257,14 @@ function tree(arr) {
             const rightHeight = this.height(node.rightChild);
 
             return Math.max(leftHeight, rightHeight) + 1;
+        },
+
+        depth: function(value) {
+            const rootHeight = this.height();
+            const node = this.find(value);
+            const nodeHeight = this.height(node);
+
+            return rootHeight - nodeHeight;
         }
     }
 }
@@ -288,3 +296,6 @@ test.postOrder();
 
 console.log("Height:");
 console.log(test.height());
+
+console.log("Depth:");
+console.log(test.depth(6));
