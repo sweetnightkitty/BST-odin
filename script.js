@@ -128,6 +128,9 @@ function tree(arr) {
         },
 
         levelOrder: function(callbackFunction = this.callback, currentNode = this.root) {
+            if(typeof callbackFunction !== "function") {
+                throw new Error ("A callback function is required.");
+            }
             //If the root is not defined exit
             if(currentNode == null) {
                 return "tree";
