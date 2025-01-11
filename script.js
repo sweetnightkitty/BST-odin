@@ -335,8 +335,40 @@ const driverArray = [19, 86, 65, 3, 6, 1, 33, 3];
 const test = tree(driverArray);
 test.prettyPrint();
 
+//Confirm that the tree is balanced 
 console.log(test.isBalanced());
 
+//Print out all elements in level, pre, post, and in order.
+console.log("Level Order Traversal:")
+console.log(test.traverse());
+
+console.log("Pre Order Traversal:");
+console.log(test.traverse("pre"));
+
+console.log("In Order Traversal:");
+console.log(test.traverse("in"));
+
+console.log("Post Order Traversal:");
+console.log(test.traverse("post"));
+
+//Unbalance the tree by adding several numbers > 100.
+test.insert(101);
+test.insert(150);
+test.insert(200);
+test.insert(400);
+test.prettyPrint();
+
+//Confirm that the tree is unbalanced
+console.log(`Is the tree balanced? ${test.isBalanced()}`);
+
+//Balance the tree
+test.rebalance();
+test.prettyPrint();
+
+//Confirm that the tree is balanced
+console.log(`Is the tree balanced? ${test.isBalanced()}`);
+
+//Print out all elements in level, pre, post, and in order.
 console.log("Level Order Traversal:")
 console.log(test.traverse());
 
