@@ -101,7 +101,7 @@ function tree(arr) {
                     currentNode = currentNode.rightChild;
                 } else {
                     //when both children exist find the next in order successor
-                    const successor = findSuccessor(currentNode); // node of 3
+                    const successor = this.findSuccessor(currentNode); // node of 3
 
                     //sets current node equal to the successor
                     currentNode.data = successor.data;
@@ -156,22 +156,20 @@ function tree(arr) {
 
         callback: function (node) {
             console.log(node.data);
+        },
+
+        findSuccessor: function(currentNode) {
+            //First traverses to right child to explore all values larger than current node
+            currentNode = currentNode.rightChild;
+            //To find the smallest value among all the nodes that are larger than the current node (to be deleted)
+            while(currentNode && currentNode.leftChild) {
+                currentNode = currentNode.leftChild;
+            }
+            return currentNode;
         }
     }
 }
 
-
-
-
-function findSuccessor(currentNode) {
-    //First traverses to right child to explore all values larger than current node
-    currentNode = currentNode.rightChild;
-    //To find the smallest value among all the nodes that are larger than the current node (to be deleted)
-    while(currentNode && currentNode.leftChild) {
-        currentNode = currentNode.leftChild;
-    }
-    return currentNode;
-}
 
 //Driving Code
 const unsortedArray = [2, 1, 9, 4, 5, 3, 5];
