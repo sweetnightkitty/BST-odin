@@ -195,7 +195,7 @@ function tree(arr) {
             if(typeof callback !== "function") {
                 throw new Error ("A callback function is required.");
             }
-            
+
             if(!currentNode.leftChild) {
                 callback(currentNode);
                 return;
@@ -213,6 +213,29 @@ function tree(arr) {
             callback(currentNode);
             this.inOrder(right);
 
+        },
+
+        postOrder: function(currentNode = this.root, callback = this.callback) {
+            if(typeof callback !== "function") {
+                throw new Error ("A callback function is required.");
+            }
+
+            if(!currentNode.leftChild) {
+                callback(currentNode);
+                return;
+            }
+
+            if(!currentNode.rightChild) {
+                callback(currentNode);
+                return;
+            }
+
+            const left = currentNode.leftChild;
+            const right = currentNode.rightChild;
+
+            this.postOrder(left);
+            this.postOrder(right);
+            callback(currentNode);
         }
     }
 }
@@ -238,3 +261,6 @@ test.preOrder();
 
 console.log("In Order:");
 test.inOrder();
+
+console.log("Post Order:");
+test.postOrder();
