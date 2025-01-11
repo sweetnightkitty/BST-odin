@@ -30,12 +30,11 @@ function buildTree (arr, start = 0, end = (arr.length - 1)) {
 };
 
 function tree(arr) {
-    let root = buildTree(arr);
 
     return {
-        root,
+        root: this.buildTree(arr),
 
-        prettyPrint: function (node = root, prefix = "", isLeft = true) {
+        prettyPrint: function (node = this.root, prefix = "", isLeft = true) {
             if (node === null) {
             return;
             }
@@ -308,9 +307,7 @@ function tree(arr) {
             const newArray = [];
             this.levelOrder((node) => newArray.push(node.data));
 
-            this.root = null;
             this.root = buildTree(newArray);
-            this.prettyPrint(this.root);
             return this.root;
         }
     }
@@ -374,5 +371,9 @@ test.prettyPrint();
 console.log("is balanced?:");
 console.log(test.isBalanced());
 
+//Rebalance tree and confirm changes in console
 test.rebalance();
 test.prettyPrint();
+
+//Confirm new tree registers as balanced
+console.log(test.isBalanced());
