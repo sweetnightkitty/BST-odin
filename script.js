@@ -172,7 +172,7 @@ function tree(arr) {
         },
 
         //Applies callback function to each node via pre-order traversal
-        preOrder: function(currentNode = this.root, callback = this.callback) {
+        preOrder: function(callback = this.callback, currentNode = this.root) {
             if(typeof callback !== "function") {
                 throw new Error ("A callback function is required.");
             }
@@ -188,13 +188,13 @@ function tree(arr) {
             //Then visits the left, then the right
             const left = currentNode.leftChild;
             const right = currentNode.rightChild;
-            this.preOrder(left);
-            this.preOrder(right);
+            this.preOrder(callback, left);
+            this.preOrder(callback, right);
 
         },
 
         //Applies callback function to each node via in-order traversal
-        inOrder: function(currentNode = this.root, callback = this.callback) {
+        inOrder: function(callback = this.callback, currentNode = this.root) {
             if(typeof callback !== "function") {
                 throw new Error ("A callback function is required.");
             }
@@ -215,14 +215,14 @@ function tree(arr) {
             const right = currentNode.rightChild;
 
             //Vist the left, then the root(currentNode), then the right
-            this.inOrder(left);
+            this.inOrder(callback, left);
             callback(currentNode);
-            this.inOrder(right);
+            this.inOrder(callback, right);
 
         },
 
         //Applies callback function to each node via post-order traversal
-        postOrder: function(currentNode = this.root, callback = this.callback) {
+        postOrder: function(callback = this.callback, currentNode = this.root) {
             if(typeof callback !== "function") {
                 throw new Error ("A callback function is required.");
             }
@@ -243,8 +243,8 @@ function tree(arr) {
             const right = currentNode.rightChild;
 
             //Visit the left, then the right, then the root(currentNode)
-            this.postOrder(left);
-            this.postOrder(right);
+            this.postOrder(callback, left);
+            this.postOrder(callback, right);
             callback(currentNode);
         },
 
@@ -309,71 +309,107 @@ function tree(arr) {
 
             this.root = buildTree(newArray);
             return this.root;
+        },
+
+        traverse: function(direction) {
+            const nodes = [];
+            if(direction == "pre") {
+                this.preOrder((node) => nodes.push(node.data));
+            } else if(direction == "post") {
+                this.postOrder((node) => nodes.push(node.data));
+            } else if(direction == "in") {
+                this.inOrder((node) => nodes.push(node.data));
+            } else {
+                this.levelOrder((node) => nodes.push(node.data));
+            }
+            return nodes;
         }
     }
 }
 
 
-//Driving Code
-const unsortedArray = [2, 1, 9, 4, 5, 3, 5];
+// //Driving Code
+// const unsortedArray = [2, 1, 9, 4, 5, 3, 5];
 
-//Generate the tree and view in console
-const test = tree(unsortedArray);
+// //Generate the tree and view in console
+// const test = tree(unsortedArray);
+// test.prettyPrint();
+
+// //Tests that values insert properly into the tree
+// test.insert(6);
+// test.insert(10);
+// test.prettyPrint();
+
+// //Tests that values delete properly from the tree
+// test.delete(4);
+// test.prettyPrint();
+
+// //Tests that find function works correctly
+// // console.log(test.find(5));
+
+
+// //Checks that tree traverses in correct order:
+// console.log("Level Order:");
+// test.levelOrder();
+
+// console.log("Pre Order:");
+// test.preOrder();
+
+// console.log("In Order:");
+// test.inOrder();
+
+// console.log("Post Order:");
+// test.postOrder();
+
+
+
+// //Checks height calculates correctly
+// console.log("Height:");
+// console.log(test.height());
+
+// //Checks that depth calculates correctly
+// console.log("Depth:");
+// console.log(test.depth(6));
+
+// //Test to confirm that is balanced returns true
+// console.log("is balanced?:");
+// console.log(test.isBalanced());
+
+// //Unbalance the tree and confirm the updates in console
+// test.delete(1);
+// test.delete(2);
+// test.delete(3);
+// test.prettyPrint();
+
+// //Test to confirm that isBalanced returns false
+// console.log("is balanced?:");
+// console.log(test.isBalanced());
+
+// //Rebalance tree and confirm changes in console
+// test.rebalance();
+// test.prettyPrint();
+
+// //Confirm new tree registers as balanced
+// console.log(test.isBalanced());
+
+
+//Driver Script
+
+const driverArray = [19, 86, 65, 3, 6, 1, 33, 3];
+
+const test = tree(driverArray);
 test.prettyPrint();
 
-//Tests that values insert properly into the tree
-test.insert(6);
-test.insert(10);
-test.prettyPrint();
-
-//Tests that values delete properly from the tree
-test.delete(4);
-test.prettyPrint();
-
-//Tests that find function works correctly
-// console.log(test.find(5));
-
-
-//Checks that tree traverses in correct order:
-console.log("Level Order:");
-test.levelOrder();
-
-console.log("Pre Order:");
-test.preOrder();
-
-console.log("In Order:");
-test.inOrder();
-
-console.log("Post Order:");
-test.postOrder();
-
-
-
-//Checks height calculates correctly
-console.log("Height:");
-console.log(test.height());
-
-//Checks that depth calculates correctly
-console.log("Depth:");
-console.log(test.depth(6));
-
-//Test to confirm that is balanced returns true
-console.log("is balanced?:");
 console.log(test.isBalanced());
 
-//Unbalance the tree and confirm the updates in console
-test.delete(1);
-test.delete(2);
-test.delete(3);
-test.prettyPrint();
+console.log("Level Order Traversal:")
+console.log(test.traverse());
 
-//Test to confirm that isBalanced returns false
-console.log("is balanced?:");
-console.log(test.isBalanced());
+console.log("Pre Order Traversal:");
+console.log(test.traverse("pre"));
 
-//Rebalance tree and confirm changes in console
-test.rebalance();
-test.prettyPrint();
+console.log("In Order Traversal:");
+console.log(test.traverse("in"));
 
-//Confirm new tree registers as balanced
-console.log(test.isBalanced());
+console.log("Post Order Traversal:");
+console.log(test.traverse("post"));
