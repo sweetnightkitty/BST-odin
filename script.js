@@ -289,7 +289,6 @@ function tree(arr) {
 
             //Base Case: If the absolute difference between left and right is > 1 it is not balanced
             if((leftHeight - rightHeight) < -1 || (leftHeight - rightHeight) > 1) {
-                console.log("is not balanced");
                 return false;
             } else {
                 //Recursively check if each node is balanced
@@ -333,6 +332,14 @@ console.log(test.height());
 
 console.log("Depth:");
 console.log(test.depth(6));
+
+console.log("is balanced?:");
+console.log(test.isBalanced());
+
+test.delete(1);
+test.delete(2);
+test.delete(3);
+test.prettyPrint();
 
 console.log("is balanced?:");
 console.log(test.isBalanced());
