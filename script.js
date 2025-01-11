@@ -127,6 +127,7 @@ function tree(arr) {
             return currentNode;
         },
 
+        //Applies callback function to each node via level-order traversal
         levelOrder: function(callbackFunction = this.callback, currentNode = this.root) {
             if(typeof callbackFunction !== "function") {
                 throw new Error ("A callback function is required.");
@@ -171,36 +172,41 @@ function tree(arr) {
             return currentNode;
         },
 
-        //Traverse the tree in preorder and apply a callback to each node
+        //Applies callback function to each node via pre-order traversal
         preOrder: function(currentNode = this.root, callback = this.callback) {
             if(typeof callback !== "function") {
                 throw new Error ("A callback function is required.");
             }
 
+            //Base case:
             if(currentNode == null) {
                 return;
             }
-            //Visits the current node first
+            //Visits the root(currentNode) first
             callback(currentNode);
+
+
+            //Then visits the left, then the right
             const left = currentNode.leftChild;
             const right = currentNode.rightChild;
-
-            //Recursively (depth-first) then visits the left and then right children
             this.preOrder(left);
             this.preOrder(right);
 
         },
 
+        //Applies callback function to each node via in-order traversal
         inOrder: function(currentNode = this.root, callback = this.callback) {
             if(typeof callback !== "function") {
                 throw new Error ("A callback function is required.");
             }
 
+            //Base case
             if(!currentNode.leftChild) {
                 callback(currentNode);
                 return;
             }
 
+            //Base case
             if(!currentNode.rightChild) {
                 callback(currentNode);
                 return;
@@ -209,22 +215,26 @@ function tree(arr) {
             const left = currentNode.leftChild;
             const right = currentNode.rightChild;
 
+            //Vist the left, then the root(currentNode), then the right
             this.inOrder(left);
             callback(currentNode);
             this.inOrder(right);
 
         },
 
+        //Applies callback function to each node via post-order traversal
         postOrder: function(currentNode = this.root, callback = this.callback) {
             if(typeof callback !== "function") {
                 throw new Error ("A callback function is required.");
             }
 
+            //Base case
             if(!currentNode.leftChild) {
                 callback(currentNode);
                 return;
             }
 
+            //Base case
             if(!currentNode.rightChild) {
                 callback(currentNode);
                 return;
@@ -233,6 +243,7 @@ function tree(arr) {
             const left = currentNode.leftChild;
             const right = currentNode.rightChild;
 
+            //Visit the left, then the right, then the root(currentNode)
             this.postOrder(left);
             this.postOrder(right);
             callback(currentNode);
