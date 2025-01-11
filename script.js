@@ -265,6 +265,40 @@ function tree(arr) {
             const nodeHeight = this.height(node);
 
             return rootHeight - nodeHeight;
+        },
+
+        isBalanced: function(currentNode = this.root) {
+            //Defaults: When the child node doesn't exist it's height can be thought of as -1
+            let leftHeight = -1;
+            let rightHeight = -1;
+
+            //Base case:
+            if(!currentNode) {
+                return null;
+            }
+
+            //Calculate height of left child
+            if(currentNode.leftChild) {
+                leftHeight = this.height(currentNode.leftChild);
+            }
+
+            //Calculate height of right child
+            if(currentNode.rightChild) {
+                rightHeight = this.height(currentNode.rightChild);
+            }
+
+            //Base Case: If the absolute difference between left and right is > 1 it is not balanced
+            if((leftHeight - rightHeight) < -1 || (leftHeight - rightHeight) > 1) {
+                console.log("is not balanced");
+                return false;
+            } else {
+                //Recursively check if each node is balanced
+                this.isBalanced(currentNode.leftChild);
+                this.isBalanced(currentNode.rightChild);
+            }
+
+            //If all nodes fail to trigger base cases the tree is balanced
+            return true;
         }
     }
 }
@@ -299,3 +333,6 @@ console.log(test.height());
 
 console.log("Depth:");
 console.log(test.depth(6));
+
+console.log("is balanced?:");
+console.log(test.isBalanced());
