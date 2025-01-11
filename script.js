@@ -309,15 +309,24 @@ function tree(arr) {
 //Driving Code
 const unsortedArray = [2, 1, 9, 4, 5, 3, 5];
 
+//Generate the tree and view in console
 const test = tree(unsortedArray);
 test.prettyPrint();
+
+//Tests that values insert properly into the tree
 test.insert(6);
 test.insert(10);
 test.prettyPrint();
+
+//Tests that values delete properly from the tree
 test.delete(4);
 test.prettyPrint();
+
+//Tests that find function works correctly
 // console.log(test.find(5));
 
+
+//Checks that tree traverses in correct order:
 console.log("Level Order:");
 test.levelOrder();
 
@@ -330,19 +339,26 @@ test.inOrder();
 console.log("Post Order:");
 test.postOrder();
 
+
+
+//Checks height calculates correctly
 console.log("Height:");
 console.log(test.height());
 
+//Checks that depth calculates correctly
 console.log("Depth:");
 console.log(test.depth(6));
 
+//Test to confirm that is balanced returns true
 console.log("is balanced?:");
 console.log(test.isBalanced());
 
+//Unbalance the tree and confirm the updates in console
 test.delete(1);
 test.delete(2);
 test.delete(3);
 test.prettyPrint();
 
+//Test to confirm that isBalanced returns false
 console.log("is balanced?:");
 console.log(test.isBalanced());
