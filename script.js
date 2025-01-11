@@ -169,6 +169,26 @@ function tree(arr) {
                 currentNode = currentNode.leftChild;
             }
             return currentNode;
+        },
+
+        //Traverse the tree in preorder and apply a callback to each node
+        preOrder: function(currentNode = this.root, callback = this.callback) {
+            if(typeof callback !== "function") {
+                throw new Error ("A callback function is required.");
+            }
+
+            if(currentNode == null) {
+                return;
+            }
+            //Visits the current node first
+            callback(currentNode);
+            const left = currentNode.leftChild;
+            const right = currentNode.rightChild;
+
+            //Recursively (depth-first) then visits the left and then right children
+            this.preOrder(left);
+            this.preOrder(right);
+
         }
     }
 }
@@ -187,3 +207,4 @@ test.prettyPrint();
 // console.log(test.find(5));
 
 test.levelOrder();
+test.preOrder();
