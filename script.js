@@ -158,7 +158,7 @@ function tree(arr) {
         },
 
         callback: function (node) {
-            return node.data;
+            console.log(node.data);
         },
 
         findSuccessor: function(currentNode) {
