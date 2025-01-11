@@ -159,7 +159,7 @@ function tree(arr) {
         },
 
         callback: function (node) {
-            console.log(node.data);
+            return node.data;
         },
 
         findSuccessor: function(currentNode) {
@@ -301,6 +301,17 @@ function tree(arr) {
 
             //If all nodes fail to trigger base cases the tree is balanced
             return true;
+        },
+
+        rebalance: function() {
+            //Traverse the tree and log all node values into an array
+            const newArray = [];
+            this.levelOrder((node) => newArray.push(node.data));
+
+            this.root = null;
+            this.root = buildTree(newArray);
+            this.prettyPrint(this.root);
+            return this.root;
         }
     }
 }
@@ -362,3 +373,6 @@ test.prettyPrint();
 //Test to confirm that isBalanced returns false
 console.log("is balanced?:");
 console.log(test.isBalanced());
+
+test.rebalance();
+test.prettyPrint();
