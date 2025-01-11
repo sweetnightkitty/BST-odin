@@ -127,7 +127,7 @@ function tree(arr) {
             return currentNode;
         },
 
-        levelOrder: function(callbackFunction, currentNode = this.root) {
+        levelOrder: function(callbackFunction = this.callback, currentNode = this.root) {
             //If the root is not defined exit
             if(currentNode == null) {
                 return "tree";
@@ -140,7 +140,7 @@ function tree(arr) {
             while(queue.length > 0) {
                 //Pops out the first item of the array and applies callback
                 const node = queue.shift();
-                console.log(node);
+                callbackFunction(node);
 
                 //Enqueue the left child of node
                 if(node.leftChild != null) {
@@ -152,9 +152,15 @@ function tree(arr) {
                     queue.push(node.rightChild);
                 }
             }
+        },
+
+        callback: function (node) {
+            console.log(node.data);
         }
     }
 }
+
+
 
 
 function findSuccessor(currentNode) {
