@@ -247,6 +247,16 @@ function tree(arr) {
             this.postOrder(left);
             this.postOrder(right);
             callback(currentNode);
+        },
+
+        height: function(node = this.root) {
+            if(!node) {
+                return -1;
+            }
+            const leftHeight = this.height(node.leftChild);
+            const rightHeight = this.height(node.rightChild);
+
+            return Math.max(leftHeight, rightHeight) + 1;
         }
     }
 }
@@ -275,3 +285,6 @@ test.inOrder();
 
 console.log("Post Order:");
 test.postOrder();
+
+console.log("Height:");
+console.log(test.height());
