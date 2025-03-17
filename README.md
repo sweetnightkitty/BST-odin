@@ -1,6 +1,6 @@
 # Binary Search Tree
 
-## Binary search tree designed in Javascript with level-order, in-order, pre-order, and post-order tree traversal created in accordance with the Odin Project
+## Binary search tree designed in Javascript with level-order, in-order, pre-order, and post-order tree traversal
 
 This project is a practice project that was built in accordance with the ODIN Project Binary Search Tree assignment to practice working with binary search trees, tree traversal, and balancing trees. A comprehensive list of skills and concepts practiced in this project:
 
@@ -29,6 +29,8 @@ This assignment required doing the following steps after completing the project 
 7. Confirm that the tree is balanced by calling isBalanced.
 8. Print out all elements in level, pre, post, and in order.
 
-## Instructions:
+## Installation:
 
-If you wish to view this project, just simply load in your browser, and view the console to see the result of each of the Driver Script steps.
+First you will need to fork a copy of this repository to your Github account, and then use the git clone command to clone it to your local environment. 
+
+Then just simply load in your browser locally, and view the console to see the result of each of the Driver Script steps.
